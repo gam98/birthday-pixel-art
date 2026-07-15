@@ -3,6 +3,12 @@ import { GAME_HEIGHT, GAME_WIDTH } from '../../config/gameConfig';
 import { BedroomScene } from '../scenes/BedroomScene';
 import { BootScene } from '../scenes/BootScene';
 import { PreloadScene } from '../scenes/PreloadScene';
+import { TownScene } from '../scenes/TownScene';
+import { BurgerScene } from '../scenes/BurgerScene';
+import { IceCreamScene } from '../scenes/IceCreamScene';
+import { CinemaScene } from '../scenes/CinemaScene';
+import { PoolScene } from '../scenes/PoolScene';
+import { MemoryGardenScene } from '../scenes/MemoryGardenScene';
 
 export function createPhaserConfig(parent: HTMLElement): Phaser.Types.Core.GameConfig {
   return {
@@ -24,7 +30,17 @@ export function createPhaserConfig(parent: HTMLElement): Phaser.Types.Core.GameC
       width: GAME_WIDTH,
       height: GAME_HEIGHT,
     },
-    scene: [BootScene, PreloadScene, BedroomScene],
+    scene: [
+      BootScene,
+      PreloadScene,
+      BedroomScene,
+      TownScene,
+      BurgerScene,
+      IceCreamScene,
+      CinemaScene,
+      PoolScene,
+      MemoryGardenScene,
+    ],
     render: { antialias: false, pixelArt: true, roundPixels: true },
     input: { keyboard: true, mouse: true, touch: true },
   };

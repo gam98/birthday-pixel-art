@@ -17,6 +17,14 @@ export function GameCanvas() {
     gameRef.current = new Phaser.Game(createPhaserConfig(container));
     const onSceneChanged = ({ scene }: { scene: string }) => setLastScene(scene);
     eventBus.on(GAME_EVENTS.SCENE_CHANGED, onSceneChanged);
+    const onPlaySound = ({ key }: { key: string }) => {
+      const game = gameRef.current;
+      const settings = useGameStore.getState();
+      if (game && settings.soundEnabled && game.cache.audio.exists(key)) {
+        game.sound.play(key, { volume: settings.soundVolume });
+      }
+    };
+    eventBus.on(GAME_EVENTS.PLAY_SOUND, onPlaySound);
 
     const onVisibilityChange = () => {
       if (!gameRef.current) return;
@@ -28,6 +36,7 @@ export function GameCanvas() {
     return () => {
       document.removeEventListener('visibilitychange', onVisibilityChange);
       eventBus.off(GAME_EVENTS.SCENE_CHANGED, onSceneChanged);
+      eventBus.off(GAME_EVENTS.PLAY_SOUND, onPlaySound);
       gameRef.current?.destroy(true);
       gameRef.current = null;
     };

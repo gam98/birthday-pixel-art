@@ -1,7 +1,20 @@
+import type { DialogueSequence } from '../../types/dialogue';
+import type { InventoryItem } from '../../types/inventory';
+import type { ActivityId } from '../../types/activity';
+
+export type GameSoundKey = 'ui-click' | 'activity-success' | 'pool-shot';
+
 export interface GameEventMap {
   'game-ready': undefined;
   'scene-changed': { scene: string };
   'save-requested': undefined;
+  'open-dialogue': DialogueSequence;
+  'item-collected': { item: InventoryItem };
+  'interaction-changed': { label: string | null };
+  'modal-state': { open: boolean };
+  'open-activity': { activityId: ActivityId };
+  'activity-completed': { activityId: ActivityId };
+  'play-sound': { key: GameSoundKey };
 }
 
 export const GAME_EVENTS = {
@@ -14,4 +27,8 @@ export const GAME_EVENTS = {
   ACTIVITY_COMPLETED: 'activity-completed',
   ITEM_COLLECTED: 'item-collected',
   OPEN_FINAL_GIFT: 'open-final-gift',
+  INTERACTION_CHANGED: 'interaction-changed',
+  MODAL_STATE: 'modal-state',
+  OPEN_ACTIVITY: 'open-activity',
+  PLAY_SOUND: 'play-sound',
 } as const;

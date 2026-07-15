@@ -1,5 +1,5 @@
 interface PixelIconProps {
-  name: 'heart' | 'music' | 'sound' | 'reset' | 'play' | 'book' | 'back';
+  name: 'heart' | 'music' | 'sound' | 'reset' | 'play' | 'book' | 'back' | 'bag';
 }
 
 const icons: Record<PixelIconProps['name'], string> = {
@@ -10,6 +10,7 @@ const icons: Record<PixelIconProps['name'], string> = {
   play: '▶',
   book: '▤',
   back: '←',
+  bag: '▣',
 };
 
 export function PixelIcon({ name }: PixelIconProps) {

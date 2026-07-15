@@ -1,15 +1,14 @@
-# Una aventura para vos — Etapa 1
+# Una aventura para vos — Etapa 3
 
-Base ejecutable del minijuego romántico pixel art descrito en `prompts/initial-prompt.md`.
+Minijuego romántico pixel art descrito en `prompts/initial-prompt.md`, ejecutable hasta la Etapa 3.
 
 ## Arquitectura
 
-- **React** controla el menú, la cuenta regresiva, preferencias, navegación y UI accesible.
-- **Phaser 3** renderiza la habitación, crea los placeholders y gestiona movimiento y colisiones Arcade.
-- **Zustand** persiste la existencia de una partida y preferencias de audio en `localStorage`.
-- **EventBus** separa Phaser de React. La instancia de Phaser vive una sola vez por montaje y se destruye al salir.
-- **Tailwind CSS 4** está disponible mediante Vite; la identidad pixel art inicial se concentra en `src/styles/global.css`.
-- **Vitest + Testing Library** validan la lógica y la UI del contador.
+- **React** controla menú, contador, diálogos, inventario, minijuegos, progreso y controles móviles accesibles.
+- **Phaser 3** renderiza siete escenarios y gestiona movimiento, colisiones, NPC, interacción, transiciones y sonidos locales.
+- **Zustand** persiste escenas, inventario, actividades, piezas de llave, sabores, película, tiros, recuerdos, diálogos y preferencias.
+- **EventBus** mantiene separadas las responsabilidades de React y Phaser sin actualizar React en cada frame.
+- **Vitest + Testing Library** validan contador, store, recompensas y lógica de actividades.
 
 ## Instalación y ejecución
 
@@ -18,12 +17,21 @@ npm install
 npm run dev
 ```
 
-Abrí la URL que muestra Vite (normalmente `http://localhost:5173`), elegí **Comenzar aventura** y probá:
+Controles:
 
-- Flechas o `WASD` para mover al personaje.
-- Caminar contra la cama, el escritorio y el regalo para comprobar las colisiones.
-- Caminar hacia los bordes para comprobar los límites de la habitación.
-- Volver a **Menú** y usar **Continuar partida** para comprobar la persistencia.
+- Flechas o `WASD`: movimiento.
+- `E` o espacio: interactuar.
+- `I` o botón superior: inventario.
+- En móvil: cruceta virtual y botón **E**.
+
+Recorrido de prueba:
+
+1. Leer la carta y salir desde la habitación.
+2. Entrar a cada local desde la plaza y acercarse al punto principal.
+3. Preparar la hamburguesa en orden, crear un helado, elegir una película y completar el tiro de billar.
+4. Encontrar al menos cinco de los siete objetos ocultos en el jardín.
+5. Revisar en el inventario las cuatro piezas de llave y los recuerdos.
+6. Volver al menú y continuar para comprobar el autoguardado y la última escena.
 
 ## Verificación
 
@@ -36,20 +44,21 @@ npm run format:check
 
 ## Configuración personalizable
 
-Editá `src/config/gameConfig.ts` para cambiar nombres, fecha, textos y cantidad de piezas. `src/config/developmentConfig.ts` reserva el desbloqueo manual del regalo para la Etapa 4. No hace falta tocar la lógica.
+Editá `src/config/gameConfig.ts` para nombres, fecha y textos. Las películas, sabores y recuerdos están en `src/data/` y pueden modificarse sin tocar la lógica.
 
 ## Assets visuales
 
-La habitación utiliza un fondo local en `public/assets/environments/bedroom-v2.png` y un personaje transparente en `public/assets/characters/player-idle-v2.png`. `src/game/utils/createPlaceholderTextures.ts` mantiene texturas mínimas de respaldo. La guía y el origen están documentados en `public/assets/README.md` y `public/assets/ASSET-MANIFEST.md`.
+Los siete escenarios utilizan fondos locales coherentes de 768×432 px. La guía de origen y reemplazo está en `public/assets/README.md` y `public/assets/ASSET-MANIFEST.md`.
 
-## Continuación: Etapa 2
+## Implementación de Etapas 2 y 3
 
-La siguiente etapa puede crecer sobre esta base sin recrear el juego:
+- `InteractiveObject`, `InteractionSystem`, `DialogueSystem` e `InventorySystem` forman la base reutilizable.
+- `BaseActivityScene` estandariza navegación, colisiones y apertura de actividades.
+- Los minijuegos React son independientes, accesibles y compatibles con toque, sin drag-and-drop complejo.
+- Hamburguesa, helado, cine y billar entregan las cuatro piezas configuradas de la llave.
+- El jardín contiene siete recuerdos y se completa al encontrar cinco; los restantes son opcionales.
+- Los sonidos sintetizados se reproducen mediante Phaser después de una interacción y respetan las preferencias.
 
-1. Añadir `TownScene` y transiciones mediante zonas Arcade.
-2. Crear `InteractiveObject`, proximidad y acciones con `E`/espacio/toque.
-3. Emitir diálogos e inventario desde Phaser hacia modales React a través del `EventBus`.
-4. Extender el store con escenas visitadas, objetos y diálogos vistos.
-5. Agregar joystick virtual y botón de interacción para móvil.
+## Continuación: Etapa 4
 
-La Etapa 1 se detiene deliberadamente antes de esas mecánicas, tal como pide el prompt.
+La próxima etapa conectará las cuatro piezas con el regalo bloqueado, la fecha de cumpleaños, carta final, galería, confeti, música y estadísticas. La Etapa 3 se detiene deliberadamente antes de abrir el regalo.
