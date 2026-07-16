@@ -105,7 +105,7 @@ export function StartPage() {
       </section>
 
       <footer>
-        Hecho con <PixelIcon name="heart" /> y un montón de recuerdos.
+        Hecho con <PixelIcon name="heart" /> por Gabi y un montón de recuerdos.
       </footer>
     </main>
   );
