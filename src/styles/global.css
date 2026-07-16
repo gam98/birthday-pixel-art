@@ -1441,6 +1441,77 @@ button:disabled {
     min-height: 300px;
   }
 }
+@media (orientation: landscape) and (max-height: 540px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  .game-page {
+    position: fixed;
+    inset: 0;
+    display: block;
+    width: 100vw;
+    height: 100dvh;
+    min-height: 0;
+  }
+  .game-shell {
+    width: 100vw;
+    height: 100dvh;
+    padding: 0;
+  }
+  .game-frame {
+    width: min(100vw, calc(100dvh * 16 / 9));
+    height: min(100dvh, calc(100vw * 9 / 16));
+    max-width: none;
+    max-height: none;
+  }
+  .game-canvas {
+    border: 0;
+    box-shadow: none;
+  }
+  .game-toolbar {
+    position: fixed;
+    z-index: 20;
+    inset: 0 0 auto;
+    padding: max(6px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) 0
+      max(8px, env(safe-area-inset-left));
+    background: transparent;
+    border: 0;
+    pointer-events: none;
+  }
+  .game-toolbar button,
+  .game-progress {
+    pointer-events: auto;
+  }
+  .game-toolbar button {
+    min-height: 36px;
+    padding: 5px 8px;
+    background: rgb(54 27 42 / 82%);
+    border: 1px solid rgb(255 220 188 / 48%);
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgb(25 10 21 / 38%);
+    backdrop-filter: blur(5px);
+  }
+  .game-toolbar > p {
+    display: none;
+  }
+  .game-progress {
+    position: absolute;
+    top: max(7px, env(safe-area-inset-top));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .game-label--room {
+    display: none;
+  }
+  .orientation-hint {
+    display: none;
+  }
+}
 @media (max-width: 430px) {
   .start-page {
     padding-inline: 11px;
