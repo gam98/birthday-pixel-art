@@ -2,6 +2,8 @@
 
 Minijuego romántico pixel art descrito en `prompts/initial-prompt.md`, ejecutable hasta la Etapa 3.
 
+La lista completa de controles, interacciones, soluciones y desbloqueos está en [`docs/GUIA-DE-JUEGO.md`](docs/GUIA-DE-JUEGO.md).
+
 ## Arquitectura
 
 - **React** controla menú, contador, diálogos, inventario, minijuegos, progreso y controles móviles accesibles.

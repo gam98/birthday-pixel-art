@@ -65,3 +65,11 @@ Todos fueron generados específicamente para este proyecto con la herramienta in
 - **Origen:** generados específicamente para este proyecto con la herramienta integrada de generación de imágenes de OpenAI, usando `environments/ice-cream-v2.png` como referencia visual; fondo chroma azul removido y piezas recortadas localmente con ImageMagick.
 - **Uso:** selector, montaje del cono y celebración de `IceCreamActivity`; reemplazan los círculos CSS por arte consistente con el interior de la heladería.
 - **Prompt final:** kit de ocho sprites aislados en cuadrícula 4×2 con bochas de cereza, tramontana, chocolate con almendras, menta granizada y crema rusa, cono vacío, cono completo y cerezas, en pixel art 16-bit nítido, sin texto ni objetos adicionales, sobre fondo chroma azul uniforme.
+
+## Pantalla principal de la aventura
+
+- **Archivos:** `ui/start-adventure-v2.webp` y `ui/start-adventure-v2.png`.
+- **Dimensiones:** WebP principal de 1536×864 px y PNG fallback de 768×432 px.
+- **Origen:** generado específicamente para este proyecto con la herramienta integrada de generación de imágenes de OpenAI, usando la habitación y la plaza como referencias visuales.
+- **Uso:** fondo atmosférico de `StartPage` y escena panorámica dentro de la tarjeta principal.
+- **Prompt final:** escena de portada romántica 16-bit al atardecer, con camino iluminado entre una habitación acogedora y la plaza, dos pequeños aventureros, locales temáticos, flores, corazones y luces, sin texto, UI ni logotipos.

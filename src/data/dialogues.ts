@@ -21,7 +21,11 @@ export const dialogues: Record<string, DialogueSequence> = {
     lines: [
       {
         speaker: 'Regalo misterioso',
-        text: 'Todavía está cerrado. En la plaza vas a descubrir qué recuerdos pueden abrirlo.',
+        text: '¡Ya falta poquito! Este regalo está cuidando una sorpresa muy especial para vos.',
+      },
+      {
+        speaker: 'Regalo misterioso',
+        text: 'No hiciste nada mal: va a poder abrirse recién el 14 de agosto. Mientras tanto, podés seguir disfrutando la aventura. ✨',
       },
     ],
   },
