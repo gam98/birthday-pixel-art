@@ -14,9 +14,9 @@ describe('actividades de la Etapa 3', () => {
   it('guarda los sabores elegidos', () => {
     const onComplete = vi.fn();
     render(<IceCreamActivity onComplete={onComplete} />);
-    fireEvent.click(screen.getByRole('button', { name: /Chocolate/ }));
+    fireEvent.click(screen.getByRole('button', { name: /Cereza/ }));
     fireEvent.click(screen.getByRole('button', { name: /Servir este helado/ }));
-    expect(useGameStore.getState().selectedFlavors).toEqual(['chocolate']);
+    expect(useGameStore.getState().selectedFlavors).toEqual(['cherry']);
     expect(onComplete).toHaveBeenCalledOnce();
   });
 

@@ -40,11 +40,11 @@ describe('gameStore', () => {
   });
 
   it('guarda elecciones y recuerdos sin duplicarlos', () => {
-    useGameStore.getState().setSelectedFlavors(['chocolate', 'strawberry']);
+    useGameStore.getState().setSelectedFlavors(['cherry', 'tramontana']);
     useGameStore.getState().setSelectedMovie('starlight');
     useGameStore.getState().findMemory('memoryPhoto');
     useGameStore.getState().findMemory('memoryPhoto');
-    expect(useGameStore.getState().selectedFlavors).toEqual(['chocolate', 'strawberry']);
+    expect(useGameStore.getState().selectedFlavors).toEqual(['cherry', 'tramontana']);
     expect(useGameStore.getState().selectedMovie).toBe('starlight');
     expect(useGameStore.getState().memoriesFound).toEqual(['memoryPhoto']);
   });

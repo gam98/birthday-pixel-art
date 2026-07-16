@@ -30,11 +30,14 @@ export class TownScene extends Phaser.Scene {
     this.addCollisionZone(obstacles, 160, 0, 65, 68);
     this.addCollisionZone(obstacles, 0, 80, 100, 79);
     this.addCollisionZone(obstacles, 286, 77, 98, 84);
-    this.addCollisionZone(obstacles, 160, 72, 64, 49);
-    this.addCollisionZone(obstacles, 128, 77, 26, 13);
-    this.addCollisionZone(obstacles, 231, 77, 26, 13);
-    this.addCollisionZone(obstacles, 134, 126, 31, 13);
-    this.addCollisionZone(obstacles, 224, 125, 31, 13);
+    // The visual edges around the fountain and angled benches are decorative.
+    // Keeping only their solid cores leaves enough room for the 12×8 player body
+    // to slide around every corner instead of getting pinched between hitboxes.
+    this.addCollisionZone(obstacles, 168, 77, 49, 41);
+    this.addCollisionZone(obstacles, 130, 79, 22, 9);
+    this.addCollisionZone(obstacles, 234, 79, 21, 9);
+    this.addCollisionZone(obstacles, 139, 130, 15, 8);
+    this.addCollisionZone(obstacles, 230, 129, 23, 8);
 
     this.player = new Player(this, 193, 187);
     this.physics.add.collider(this.player, obstacles);

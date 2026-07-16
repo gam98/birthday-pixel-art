@@ -7,7 +7,9 @@ import type { ActivityComponentProps } from './types';
 export function IceCreamActivity({ onComplete }: ActivityComponentProps) {
   const previous = useGameStore((state) => state.selectedFlavors);
   const setSelectedFlavors = useGameStore((state) => state.setSelectedFlavors);
-  const [selected, setSelected] = useState<string[]>(previous);
+  const [selected, setSelected] = useState<string[]>(() =>
+    previous.filter((id) => iceCreamFlavors.some((flavor) => flavor.id === id)).slice(0, 3),
+  );
   const [completed, setCompleted] = useState(false);
   const isSecret = useMemo(
     () =>
@@ -37,6 +39,7 @@ export function IceCreamActivity({ onComplete }: ActivityComponentProps) {
     return (
       <ActivitySuccess
         icon="🍦"
+        imageSrc="/assets/activities/ice-cream/complete-cone-v2.png"
         title="¡Tu helado está listo!"
         message={
           isSecret
@@ -51,18 +54,29 @@ export function IceCreamActivity({ onComplete }: ActivityComponentProps) {
     <div className="activity-layout activity-layout--ice">
       <section className="ice-cream-preview">
         <div className="ice-cream-scoops" aria-label={`${selected.length} sabores elegidos`}>
+          {selected.includes('cherry') && (
+            <img
+              className="ice-cream-topper"
+              src="/assets/activities/ice-cream/cherries-v2.png"
+              alt=""
+              aria-hidden="true"
+            />
+          )}
           {[...selected].reverse().map((id) => {
             const flavor = iceCreamFlavors.find((item) => item.id === id);
             return (
-              <span
-                key={id}
-                style={{ background: flavor?.color, borderColor: flavor?.accent }}
-                title={flavor?.name}
-              />
+              <span key={id} className="ice-cream-scoop" title={flavor?.name}>
+                {flavor && <img src={flavor.asset} alt="" />}
+              </span>
             );
           })}
         </div>
-        <div className="ice-cream-cone" aria-hidden="true" />
+        <img
+          className="ice-cream-cone"
+          src="/assets/activities/ice-cream/cone-v2.png"
+          alt=""
+          aria-hidden="true"
+        />
         <p>Elegí hasta tres sabores</p>
       </section>
       <section className="activity-options">
@@ -75,7 +89,13 @@ export function IceCreamActivity({ onComplete }: ActivityComponentProps) {
               onClick={() => toggleFlavor(flavor.id)}
               aria-pressed={selected.includes(flavor.id)}
             >
-              <span className="flavor-swatch" style={{ background: flavor.color }} />
+              <span
+                className="flavor-swatch"
+                style={{ background: `${flavor.color}33`, borderColor: flavor.accent }}
+                aria-hidden="true"
+              >
+                <img src={flavor.asset} alt="" />
+              </span>
               <div>
                 <strong>{flavor.name}</strong>
                 <small>{flavor.phrase}</small>

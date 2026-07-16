@@ -22,7 +22,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
     this.setCollideWorldBounds(true).setDepth(10);
-    this.body?.setSize(12, 8).setOffset(6, 30);
+    // A small circular foot collider glides around furniture corners more
+    // naturally than the old rectangle, while keeping the visible sprite clear.
+    this.body?.setCircle(5, 7, 29);
 
     const keyboard = scene.input.keyboard;
     if (!keyboard) throw new Error('No fue posible inicializar los controles de teclado.');

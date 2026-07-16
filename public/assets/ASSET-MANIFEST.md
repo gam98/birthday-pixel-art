@@ -58,3 +58,10 @@ Todos fueron generados específicamente para este proyecto con la herramienta in
 - **Origen:** generados específicamente para este proyecto con la herramienta integrada de generación de imágenes de OpenAI, usando `environments/burger-v2.png` como referencia visual; fondo chroma azul removido localmente y piezas recortadas con ImageMagick.
 - **Uso:** selector, construcción animada y celebración de `BurgerActivity`; reemplazan los emojis de sistema por arte consistente entre dispositivos.
 - **Prompt final:** kit de ocho sprites aislados en cuadrícula 4×2, ingredientes de hamburguesa y hamburguesa completa, pixel art 16-bit nítido, paleta cálida, contornos bordó, sin texto, objetos extra ni sombras, sobre fondo chroma azul uniforme.
+
+## Kit de heladería
+
+- **Archivos:** `activities/ice-cream/cherry-v2.png`, `tramontana-v2.png`, `chocolate-almond-v2.png`, `mint-chip-v2.png`, `russian-cream-v2.png`, `cone-v2.png`, `complete-cone-v2.png` y `cherries-v2.png`.
+- **Origen:** generados específicamente para este proyecto con la herramienta integrada de generación de imágenes de OpenAI, usando `environments/ice-cream-v2.png` como referencia visual; fondo chroma azul removido y piezas recortadas localmente con ImageMagick.
+- **Uso:** selector, montaje del cono y celebración de `IceCreamActivity`; reemplazan los círculos CSS por arte consistente con el interior de la heladería.
+- **Prompt final:** kit de ocho sprites aislados en cuadrícula 4×2 con bochas de cereza, tramontana, chocolate con almendras, menta granizada y crema rusa, cono vacío, cono completo y cerezas, en pixel art 16-bit nítido, sin texto ni objetos adicionales, sobre fondo chroma azul uniforme.

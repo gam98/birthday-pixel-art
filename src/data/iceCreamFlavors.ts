@@ -3,45 +3,51 @@ export interface IceCreamFlavor {
   name: string;
   color: string;
   accent: string;
+  asset: string;
   phrase: string;
 }
 
 export const iceCreamFlavors: IceCreamFlavor[] = [
   {
-    id: 'chocolate',
-    name: 'Chocolate',
-    color: '#70402f',
-    accent: '#3f241f',
-    phrase: 'Intenso como las historias que no queremos que terminen.',
+    id: 'cherry',
+    name: 'Cereza',
+    color: '#ef7f8f',
+    accent: '#af354f',
+    asset: '/assets/activities/ice-cream/cherry-v2.png',
+    phrase: 'Dulce, frutal y con un toque alegre.',
   },
   {
-    id: 'strawberry',
-    name: 'Frutilla',
-    color: '#ef8fa4',
-    accent: '#bd4f6c',
-    phrase: 'Dulce, alegre y un poquito rosado.',
+    id: 'tramontana',
+    name: 'Tramontana',
+    color: '#f5dcaa',
+    accent: '#b98142',
+    asset: '/assets/activities/ice-cream/tramontana-v2.png',
+    phrase: 'Crema, caramelo y chocolate para un plan perfecto.',
   },
   {
-    id: 'vanilla',
-    name: 'Vainilla',
-    color: '#fff0c9',
-    accent: '#d9b777',
-    phrase: 'Simple, cálida y perfecta para compartir.',
-  },
-  {
-    id: 'dulceDeLeche',
-    name: 'Dulce de leche',
-    color: '#d58b4b',
-    accent: '#9a5d32',
-    phrase: 'Un clásico que siempre sabe a casa.',
+    id: 'chocolateAlmond',
+    name: 'Chocolate con almendras',
+    color: '#874723',
+    accent: '#4f281e',
+    asset: '/assets/activities/ice-cream/chocolate-almond-v2.png',
+    phrase: 'Chocolate intenso con pedacitos crocantes.',
   },
   {
     id: 'mint',
     name: 'Menta granizada',
     color: '#8ecbae',
     accent: '#487c65',
+    asset: '/assets/activities/ice-cream/mint-chip-v2.png',
     phrase: 'Fresca, inesperada y llena de pequeñas sorpresas.',
+  },
+  {
+    id: 'russian',
+    name: 'Rusa',
+    color: '#f4dfad',
+    accent: '#b8864c',
+    asset: '/assets/activities/ice-cream/russian-cream-v2.png',
+    phrase: 'Cremosa y delicada, con pedacitos de nuez.',
   },
 ];
 
-export const secretFlavorCombination = ['chocolate', 'strawberry', 'dulceDeLeche'];
+export const secretFlavorCombination = ['cherry', 'tramontana', 'russian'];
