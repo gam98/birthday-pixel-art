@@ -41,7 +41,7 @@ export class TownScene extends Phaser.Scene {
 
     const guide = new NPC(this, {
       id: 'garden-guide',
-      name: 'Gael',
+      name: 'Gabi',
       x: 261,
       y: 114,
       texture: 'garden-guide',
@@ -70,7 +70,7 @@ export class TownScene extends Phaser.Scene {
         width: 28,
         height: 44,
         range: 31,
-        label: 'Hablar con Gael',
+        label: 'Hablar con Gabi',
         action: () => openDialogue('guideWelcome'),
       },
       {

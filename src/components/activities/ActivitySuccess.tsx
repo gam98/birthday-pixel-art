@@ -1,5 +1,6 @@
 interface ActivitySuccessProps {
   icon: string;
+  imageSrc?: string;
   title: string;
   message: string;
   hasKeyPiece?: boolean;
@@ -7,6 +8,7 @@ interface ActivitySuccessProps {
 
 export function ActivitySuccess({
   icon,
+  imageSrc,
   title,
   message,
   hasKeyPiece = true,
@@ -17,7 +19,7 @@ export function ActivitySuccess({
         ✦
       </div>
       <span className="activity-success__icon" aria-hidden="true">
-        {icon}
+        {imageSrc ? <img src={imageSrc} alt="" /> : icon}
       </span>
       <h3>{title}</h3>
       <p>{message}</p>

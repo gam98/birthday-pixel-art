@@ -24,7 +24,7 @@ describe('actividades de la Etapa 3', () => {
     const onComplete = vi.fn();
     render(<CinemaActivity onComplete={onComplete} />);
     fireEvent.click(screen.getByRole('button', { name: /Elegir como próxima película/ }));
-    expect(useGameStore.getState().selectedMovie).toBe('starlight');
+    expect(useGameStore.getState().selectedMovie).toBe('avatar');
     expect(onComplete).toHaveBeenCalledOnce();
   });
 

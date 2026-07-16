@@ -5,13 +5,17 @@ import type { ActivityComponentProps } from './types';
 
 const correctOrder = ['bottomBun', 'patty', 'cheese', 'lettuce', 'tomato', 'sauce', 'topBun'];
 const ingredients = [
-  { id: 'tomato', name: 'Tomate', icon: '🍅' },
-  { id: 'bottomBun', name: 'Pan inferior', icon: '🟤' },
-  { id: 'sauce', name: 'Salsa', icon: '🥫' },
-  { id: 'cheese', name: 'Queso', icon: '🧀' },
-  { id: 'topBun', name: 'Pan superior', icon: '🟠' },
-  { id: 'lettuce', name: 'Lechuga', icon: '🥬' },
-  { id: 'patty', name: 'Carne', icon: '🥩' },
+  { id: 'tomato', name: 'Tomate', asset: '/assets/activities/burger/tomato-v2.png' },
+  {
+    id: 'bottomBun',
+    name: 'Pan inferior',
+    asset: '/assets/activities/burger/bottom-bun-v2.png',
+  },
+  { id: 'sauce', name: 'Salsa', asset: '/assets/activities/burger/sauce-v2.png' },
+  { id: 'cheese', name: 'Queso', asset: '/assets/activities/burger/cheese-v2.png' },
+  { id: 'topBun', name: 'Pan superior', asset: '/assets/activities/burger/top-bun-v2.png' },
+  { id: 'lettuce', name: 'Lechuga', asset: '/assets/activities/burger/lettuce-v2.png' },
+  { id: 'patty', name: 'Carne', asset: '/assets/activities/burger/patty-v2.png' },
 ];
 
 export function BurgerActivity({ onComplete }: ActivityComponentProps) {
@@ -40,6 +44,7 @@ export function BurgerActivity({ onComplete }: ActivityComponentProps) {
     return (
       <ActivitySuccess
         icon="🍔"
+        imageSrc="/assets/activities/burger/complete-burger-v2.png"
         title="¡Hamburguesa perfecta!"
         message="Esta hamburguesa no es tan especial como nuestras salidas, pero casi."
       />
@@ -57,7 +62,7 @@ export function BurgerActivity({ onComplete }: ActivityComponentProps) {
             const ingredient = ingredients.find((item) => item.id === id);
             return (
               <div key={id} className={`burger-layer burger-layer--${id}`} title={ingredient?.name}>
-                {ingredient?.icon}
+                {ingredient && <img src={ingredient.asset} alt="" />}
               </div>
             );
           })}
@@ -82,7 +87,9 @@ export function BurgerActivity({ onComplete }: ActivityComponentProps) {
               onClick={() => selectIngredient(ingredient.id)}
               disabled={stack.includes(ingredient.id)}
             >
-              <span aria-hidden="true">{ingredient.icon}</span>
+              <span className="ingredient-icon" aria-hidden="true">
+                <img src={ingredient.asset} alt="" />
+              </span>
               <strong>{ingredient.name}</strong>
             </button>
           ))}

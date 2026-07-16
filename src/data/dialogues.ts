@@ -38,17 +38,17 @@ export const dialogues: Record<string, DialogueSequence> = {
     id: 'guideWelcome',
     lines: [
       {
-        speaker: 'Gael, guardián de recuerdos',
+        speaker: 'Gabi, guardián de recuerdos',
         portrait: guidePortrait,
         text: '¡Llegaste! Esta plaza conecta todos los lugares importantes de la aventura.',
       },
       {
-        speaker: 'Gael',
+        speaker: 'Gabi',
         portrait: guidePortrait,
         text: 'La hamburguesería, la heladería, el cine, el billar y el jardín guardan una sorpresa diferente.',
       },
       {
-        speaker: 'Gael',
+        speaker: 'Gabi',
         portrait: guidePortrait,
         text: 'Por ahora recorré la plaza, juntá la flor brillante y familiarizate con el lugar.',
         choices: [

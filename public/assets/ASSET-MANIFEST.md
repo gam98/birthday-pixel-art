@@ -24,7 +24,7 @@
 - **Uso:** fondo completo de `TownScene`; conecta visualmente hamburguesería, heladería, cine, billar, jardín y camino a casa.
 - **Prompt final:** plaza romántica 16-bit al atardecer, fuente de corazón, cinco accesos diferenciados mediante pictogramas, caminos navegables y estilo idéntico a la habitación.
 
-## Gael, guardián de recuerdos
+## Gabi, guardián de recuerdos
 
 - **Archivo:** `characters/garden-guide-v2.png`
 - **Dimensiones:** 28×44 px con transparencia.
@@ -51,3 +51,10 @@ Todos fueron generados específicamente para este proyecto con la herramienta in
 - **Archivos:** `sounds/ui-click.wav`, `sounds/pool-shot.wav`, `sounds/activity-success.wav`.
 - **Origen:** tonos sintetizados localmente, sin muestras ni dependencias externas.
 - **Uso:** feedback de interfaz, tiro de billar y celebración mediante Phaser.
+
+## Kit de hamburguesa
+
+- **Archivos:** `activities/burger/bottom-bun-v2.png`, `patty-v2.png`, `cheese-v2.png`, `lettuce-v2.png`, `tomato-v2.png`, `sauce-v2.png`, `top-bun-v2.png` y `complete-burger-v2.png`.
+- **Origen:** generados específicamente para este proyecto con la herramienta integrada de generación de imágenes de OpenAI, usando `environments/burger-v2.png` como referencia visual; fondo chroma azul removido localmente y piezas recortadas con ImageMagick.
+- **Uso:** selector, construcción animada y celebración de `BurgerActivity`; reemplazan los emojis de sistema por arte consistente entre dispositivos.
+- **Prompt final:** kit de ocho sprites aislados en cuadrícula 4×2, ingredientes de hamburguesa y hamburguesa completa, pixel art 16-bit nítido, paleta cálida, contornos bordó, sin texto, objetos extra ni sombras, sobre fondo chroma azul uniforme.
