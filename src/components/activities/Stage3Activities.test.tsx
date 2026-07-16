@@ -20,11 +20,11 @@ describe('actividades de la Etapa 3', () => {
     expect(onComplete).toHaveBeenCalledOnce();
   });
 
-  it('guarda la próxima película', () => {
+  it('guarda la próxima película', async () => {
     const onComplete = vi.fn();
     render(<CinemaActivity onComplete={onComplete} />);
     fireEvent.click(screen.getByRole('button', { name: /Elegir como próxima película/ }));
-    expect(useGameStore.getState().selectedMovie).toBe('avatar');
+    await waitFor(() => expect(useGameStore.getState().selectedMovie).toBe('avatar'));
     expect(onComplete).toHaveBeenCalledOnce();
   });
 
