@@ -47,7 +47,7 @@ export function GameCanvas() {
       ref={containerRef}
       className="game-canvas"
       role="application"
-      aria-label="Habitación pixel art. Usá WASD o las flechas para mover al personaje."
+      aria-label="Aventura pixel art. Usá WASD o las flechas para moverte, B para bailar y G para llamar a Gabi."
     />
   );
 }

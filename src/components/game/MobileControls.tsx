@@ -56,6 +56,28 @@ export function MobileControls() {
         </button>
       </div>
       <button
+        className="mobile-call-gabi"
+        type="button"
+        onPointerDown={(event) => {
+          event.preventDefault();
+          virtualControls.requestCallGabi();
+        }}
+        aria-label="Llamar a Gabi"
+      >
+        G<span>Llamar</span>
+      </button>
+      <button
+        className="mobile-dance"
+        type="button"
+        onPointerDown={(event) => {
+          event.preventDefault();
+          virtualControls.requestDance();
+        }}
+        aria-label="Bailar"
+      >
+        ♪<span>Bailar</span>
+      </button>
+      <button
         className="mobile-interact"
         type="button"
         onPointerDown={(event) => {

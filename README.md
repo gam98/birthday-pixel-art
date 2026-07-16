@@ -20,6 +20,8 @@ npm run dev
 Controles:
 
 - Flechas o `WASD`: movimiento.
+- `B`: bailar.
+- `G`: llamar a Gabi y escuchar una de sus frases.
 - `E` o espacio: interactuar.
 - `I` o botón superior: inventario.
 - En móvil: cruceta virtual y botón **E**.

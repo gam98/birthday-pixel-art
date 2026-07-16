@@ -9,6 +9,8 @@ class VirtualControls {
   };
 
   private interactionRequested = false;
+  private danceRequested = false;
+  private callGabiRequested = false;
 
   setDirection(direction: Direction, pressed: boolean): void {
     this.directions[direction] = pressed;
@@ -31,9 +33,31 @@ class VirtualControls {
     return requested;
   }
 
+  requestDance(): void {
+    this.danceRequested = true;
+  }
+
+  consumeDance(): boolean {
+    const requested = this.danceRequested;
+    this.danceRequested = false;
+    return requested;
+  }
+
+  requestCallGabi(): void {
+    this.callGabiRequested = true;
+  }
+
+  consumeCallGabi(): boolean {
+    const requested = this.callGabiRequested;
+    this.callGabiRequested = false;
+    return requested;
+  }
+
   reset(): void {
     this.directions = { up: false, down: false, left: false, right: false };
     this.interactionRequested = false;
+    this.danceRequested = false;
+    this.callGabiRequested = false;
   }
 }
 

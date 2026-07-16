@@ -13,6 +13,11 @@ interface ActiveDialogue {
   lineIndex: number;
 }
 
+interface GabiCallout {
+  phrase: string;
+  callId: number;
+}
+
 const sceneTitles: Record<string, string> = {
   BedroomScene: `Habitación de ${gameConfig.playerName}`,
   TownScene: 'Plaza de los recuerdos',
@@ -32,7 +37,10 @@ export function useGameBridge() {
   );
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [activeActivity, setActiveActivity] = useState<ActivityId | null>(null);
+  const [gabiCallout, setGabiCallout] = useState<GabiCallout | null>(null);
   const saveTimer = useRef<number | null>(null);
+  const gabiTimer = useRef<number | null>(null);
+  const gabiCallId = useRef(0);
   const collectItem = useGameStore((state) => state.collectItem);
   const markDialogueSeen = useGameStore((state) => state.markDialogueSeen);
   const completeActivity = useGameStore((state) => state.completeActivity);
@@ -78,6 +86,12 @@ export function useGameBridge() {
       completeActivity(activityId);
       showSaved('Actividad completada · progreso guardado');
     };
+    const onGabiCalled = ({ phrase }: { phrase: string }) => {
+      gabiCallId.current += 1;
+      setGabiCallout({ phrase, callId: gabiCallId.current });
+      if (gabiTimer.current) window.clearTimeout(gabiTimer.current);
+      gabiTimer.current = window.setTimeout(() => setGabiCallout(null), 3500);
+    };
 
     eventBus.on(GAME_EVENTS.OPEN_DIALOGUE, openDialogue);
     eventBus.on(GAME_EVENTS.OPEN_INVENTORY, openInventory);
@@ -87,6 +101,7 @@ export function useGameBridge() {
     eventBus.on(GAME_EVENTS.OPEN_ACTIVITY, openActivity);
     eventBus.on(GAME_EVENTS.ACTIVITY_COMPLETED, onActivityCompleted);
     eventBus.on(GAME_EVENTS.SAVE_REQUESTED, showSaved);
+    eventBus.on(GAME_EVENTS.GABI_CALLED, onGabiCalled);
     return () => {
       eventBus.off(GAME_EVENTS.OPEN_DIALOGUE, openDialogue);
       eventBus.off(GAME_EVENTS.OPEN_INVENTORY, openInventory);
@@ -96,7 +111,9 @@ export function useGameBridge() {
       eventBus.off(GAME_EVENTS.OPEN_ACTIVITY, openActivity);
       eventBus.off(GAME_EVENTS.ACTIVITY_COMPLETED, onActivityCompleted);
       eventBus.off(GAME_EVENTS.SAVE_REQUESTED, showSaved);
+      eventBus.off(GAME_EVENTS.GABI_CALLED, onGabiCalled);
       if (saveTimer.current) window.clearTimeout(saveTimer.current);
+      if (gabiTimer.current) window.clearTimeout(gabiTimer.current);
     };
   }, [collectItem, completeActivity, setModalState, showSaved]);
 
@@ -165,6 +182,7 @@ export function useGameBridge() {
     sceneTitle,
     saveMessage,
     activeActivity,
+    gabiCallout,
     advanceDialogue,
     chooseDialogue,
     closeDialogue,

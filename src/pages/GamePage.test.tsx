@@ -14,6 +14,7 @@ vi.mock('../hooks/useGameBridge', () => ({
     sceneTitle: 'Habitación de Aventurera',
     saveMessage: null,
     activeActivity: null,
+    gabiCallout: null,
     advanceDialogue: vi.fn(),
     chooseDialogue: vi.fn(),
     closeDialogue: vi.fn(),

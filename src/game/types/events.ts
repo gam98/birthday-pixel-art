@@ -15,6 +15,7 @@ export interface GameEventMap {
   'open-activity': { activityId: ActivityId };
   'activity-completed': { activityId: ActivityId };
   'play-sound': { key: GameSoundKey };
+  'gabi-called': { phrase: string };
 }
 
 export const GAME_EVENTS = {
@@ -31,4 +32,5 @@ export const GAME_EVENTS = {
   MODAL_STATE: 'modal-state',
   OPEN_ACTIVITY: 'open-activity',
   PLAY_SOUND: 'play-sound',
+  GABI_CALLED: 'gabi-called',
 } as const;

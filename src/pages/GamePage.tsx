@@ -17,6 +17,7 @@ export function GamePage() {
     sceneTitle,
     saveMessage,
     activeActivity,
+    gabiCallout,
     advanceDialogue,
     chooseDialogue,
     closeDialogue,
@@ -65,6 +66,15 @@ export function GamePage() {
           {saveMessage && (
             <div className="save-toast" role="status">
               ✓ {saveMessage}
+            </div>
+          )}
+          {gabiCallout && (
+            <div className="gabi-callout" key={gabiCallout.callId} role="status" aria-live="polite">
+              <img src="/assets/characters/garden-guide-v2.png" alt="" aria-hidden="true" />
+              <span>
+                <strong>Gabi</strong>
+                {gabiCallout.phrase}
+              </span>
             </div>
           )}
         </div>

@@ -80,7 +80,8 @@ export function StartPage() {
           <aside className="instructions" aria-label="Instrucciones">
             <h2>Cómo jugar</h2>
             <p>
-              Movete con las flechas o WASD. En esta primera etapa podés recorrer la habitación.
+              Movete con las flechas o WASD. Presioná B para bailar, G para llamar a Gabi y E para
+              interactuar.
             </p>
             <p>Las interacciones, el inventario y los controles táctiles llegan en la Etapa 2.</p>
           </aside>
