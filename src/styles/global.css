@@ -1043,13 +1043,6 @@ button:disabled {
   opacity: 0.45;
 }
 
-.activity-error {
-  margin: 0;
-  color: #a43c55;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-}
 .activity-link {
   padding: 6px;
   color: #91566a;

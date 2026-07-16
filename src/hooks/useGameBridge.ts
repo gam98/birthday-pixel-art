@@ -59,12 +59,10 @@ export function useGameBridge() {
     const openDialogue = (sequence: DialogueSequence) => {
       setInventoryOpen(false);
       setDialogue({ sequence, lineIndex: 0 });
-      setModalState(true);
     };
     const openInventory = () => {
       setDialogue(null);
       setInventoryOpen(true);
-      setModalState(true);
     };
     const onInteractionChanged = ({ label }: { label: string | null }) =>
       setInteractionLabel(label);
@@ -80,7 +78,6 @@ export function useGameBridge() {
       setDialogue(null);
       setInventoryOpen(false);
       setActiveActivity(activityId);
-      setModalState(true);
     };
     const onActivityCompleted = ({ activityId }: { activityId: ActivityId }) => {
       completeActivity(activityId);
@@ -120,9 +117,8 @@ export function useGameBridge() {
   const closeDialogue = useCallback(() => {
     if (dialogue) markDialogueSeen(dialogue.sequence.id);
     setDialogue(null);
-    setModalState(false);
     showSaved();
-  }, [dialogue, markDialogueSeen, setModalState, showSaved]);
+  }, [dialogue, markDialogueSeen, showSaved]);
 
   const advanceDialogue = useCallback(() => {
     if (!dialogue) return;
@@ -155,8 +151,7 @@ export function useGameBridge() {
 
   const closeInventory = useCallback(() => {
     setInventoryOpen(false);
-    setModalState(false);
-  }, [setModalState]);
+  }, []);
 
   const openInventory = useCallback(() => {
     eventBus.emit(GAME_EVENTS.OPEN_INVENTORY);
@@ -168,12 +163,29 @@ export function useGameBridge() {
 
   const closeActivity = useCallback(() => {
     setActiveActivity(null);
-    setModalState(false);
-  }, [setModalState]);
+  }, []);
 
   const playSound = useCallback((key: GameSoundKey) => {
     eventBus.emit(GAME_EVENTS.PLAY_SOUND, { key });
   }, []);
+
+  const hasOpenModal = Boolean(dialogue || inventoryOpen || activeActivity);
+
+  // React state is the source of truth for the overlay. Deriving the Phaser
+  // input lock from it prevents a missed imperative unlock from leaving the
+  // player frozen after a dialogue, inventory or activity is dismissed.
+  useEffect(() => {
+    setModalState(hasOpenModal);
+  }, [hasOpenModal, setModalState]);
+
+  // The canvas can outlive a page transition for one render. Always release
+  // its input lock when this bridge unmounts so a return to the game is safe.
+  useEffect(
+    () => () => {
+      setModalState(false);
+    },
+    [setModalState],
+  );
 
   return {
     dialogue,

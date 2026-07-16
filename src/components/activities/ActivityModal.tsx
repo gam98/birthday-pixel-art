@@ -25,10 +25,13 @@ const instructions: Record<ActivityId, string> = {
 
 export function ActivityModal({ activityId, onComplete, onClose, onSound }: ActivityModalProps) {
   const closeButton = useRef<HTMLButtonElement>(null);
+  const closeTimer = useRef<number | null>(null);
   const activity = activities[activityId];
   const completeWithSound = () => {
     onSound('activity-success');
     onComplete(activityId);
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(onClose, 1400);
   };
 
   useEffect(() => {
@@ -37,7 +40,10 @@ export function ActivityModal({ activityId, onComplete, onClose, onSound }: Acti
       if (event.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    };
   }, [onClose]);
 
   return (

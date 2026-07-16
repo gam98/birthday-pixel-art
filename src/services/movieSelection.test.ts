@@ -1,8 +1,10 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { movies } from '../data/movies';
 import { sendMovieSelection } from './movieSelection';
 
 describe('sendMovieSelection', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
   it('envía los datos públicos de la película elegida a la Lambda', async () => {
     const fetchMock = vi.fn().mockResolvedValue(new Response(null, { status: 200 }));
     vi.stubGlobal('fetch', fetchMock);

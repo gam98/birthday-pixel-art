@@ -72,10 +72,24 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   setControlsEnabled(enabled: boolean): void {
     this.controlsEnabled = enabled;
+    this.resetMovementKeys();
     if (!enabled) {
       this.setVelocity(0);
       this.stopDance();
     }
+  }
+
+  private resetMovementKeys(): void {
+    this.cursors.left.reset();
+    this.cursors.right.reset();
+    this.cursors.up.reset();
+    this.cursors.down.reset();
+    this.wasd.left.reset();
+    this.wasd.right.reset();
+    this.wasd.up.reset();
+    this.wasd.down.reset();
+    this.danceKey.reset();
+    this.callGabiKey.reset();
   }
 
   private startDance(): void {

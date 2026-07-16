@@ -69,6 +69,11 @@ export class InteractionSystem {
   private handleModalState({ open }: { open: boolean }): void {
     this.suspended = open;
     this.player.setControlsEnabled(!open);
-    if (open) virtualControls.reset();
+    // A React modal can cancel a pressed touch control. Clear every input
+    // state on both transitions so no stale key or pointer survives it.
+    virtualControls.reset();
+    this.interactionKey.reset();
+    this.spaceKey.reset();
+    this.inventoryKey.reset();
   }
 }

@@ -10,26 +10,16 @@ export function CinemaActivity({ onComplete }: ActivityComponentProps) {
   const setSelectedMovie = useGameStore((state) => state.setSelectedMovie);
   const [selectedId, setSelectedId] = useState(previous ?? movies[0].id);
   const [completed, setCompleted] = useState(false);
-  const [isSending, setIsSending] = useState(false);
-  const [sendError, setSendError] = useState<string | null>(null);
   const selected = movies.find((movie) => movie.id === selectedId) ?? movies[0];
 
-  const finish = async () => {
-    setIsSending(true);
-    setSendError(null);
-
-    try {
-      await sendMovieSelection(selected);
-    } catch {
-      setSendError('No pudimos enviar tu elección. Revisá tu conexión e intentá de nuevo.');
-      return;
-    } finally {
-      setIsSending(false);
-    }
-
+  const finish = () => {
     setSelectedMovie(selected.id);
     setCompleted(true);
     onComplete();
+
+    // The external notification must never keep the activity modal open if
+    // the network or Lambda is temporarily unavailable.
+    void sendMovieSelection(selected).catch(() => undefined);
   };
 
   if (completed) {
@@ -74,13 +64,8 @@ export function CinemaActivity({ onComplete }: ActivityComponentProps) {
           <strong>{selected.phrase}</strong>
         </div>
       </article>
-      {sendError && (
-        <p className="activity-error" role="alert">
-          {sendError}
-        </p>
-      )}
-      <button type="button" className="activity-primary" disabled={isSending} onClick={finish}>
-        {isSending ? 'Enviando elección...' : 'Elegir como próxima película'}
+      <button type="button" className="activity-primary" onClick={finish}>
+        Elegir como próxima película
       </button>
     </div>
   );
